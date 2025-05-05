@@ -4,7 +4,7 @@ import type { PersonalInfo } from '@/services/personal-info';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, FileCode } from 'lucide-react'; // Added FileCode icon
 import Link from 'next/link';
 
 interface PersonalInfoSectionProps {
@@ -13,6 +13,7 @@ interface PersonalInfoSectionProps {
 
 export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) {
   const initials = `${info.first_name?.[0] ?? ''}${info.last_name?.[0] ?? ''}`.toUpperCase();
+  const documentationUrl = 'https://4rqni77r30.apidog.io/'; // Added documentation URL
 
   return (
     <Card className="mb-12 shadow-md rounded-lg overflow-hidden border border-border">
@@ -48,6 +49,14 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
               <MapPin className="h-5 w-5 text-accent mt-1 shrink-0" />
               <span>{info.address}</span>
             </div>
+             {/* Added Documentation Link */}
+             <div className="flex items-center space-x-3 text-foreground">
+              <FileCode className="h-5 w-5 text-accent" />
+              <a href={documentationUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-accent transition-colors">
+                Curious how this page works? Peek at the API docs!
+              </a>
+            </div>
+            {/* Social Links Buttons */}
             <div className="flex items-center space-x-4 pt-2">
                <Button variant="outline" size="sm" asChild>
                  <Link href={info.linkedinUrl} target="_blank" rel="noopener noreferrer">
