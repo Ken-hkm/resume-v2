@@ -13,8 +13,9 @@ export interface ChatResponse {
  * @returns A promise that resolves to a ChatResponse object or null if an error occurs.
  */
 export async function sendChatQuery(query: string): Promise<ChatResponse | null> {
-     // Hardcoded API URL
-    const apiUrl = 'https://us-central1-portfolio-agent-428002.cloudfunctions.net/get_resume_info';
+     // Hardcoded API URL - Updated based on user request
+    const apiUrl = 'https://6aeox7vogl.execute-api.ap-southeast-3.amazonaws.com/v1/chat';
+
 
     if (!apiUrl) {
         console.error("Chat API URL is not configured (this should not happen with hardcoded values).");
@@ -28,7 +29,7 @@ export async function sendChatQuery(query: string): Promise<ChatResponse | null>
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ query }),
+            body: JSON.stringify({ query }), // Sends the query in the expected format
         });
 
         if (!response.ok) {
@@ -44,6 +45,7 @@ export async function sendChatQuery(query: string): Promise<ChatResponse | null>
             return null;
         }
 
+        // Assuming the API returns { "response": "..." } directly
         const data: ChatResponse = await response.json();
         return data;
     } catch (error) {
