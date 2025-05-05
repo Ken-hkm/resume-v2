@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import type { PersonalInfo } from '@/services/personal-info';
@@ -33,18 +34,6 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
         <div>
           <h3 className="text-xl font-semibold mb-3 text-primary">About Me</h3>
           <p className="text-foreground leading-relaxed">{info.aboutMe}</p>
-          {/* Documentation Link - Made more noticeable */}
-           <div className="flex items-center space-x-2 text-base mt-4 p-3 bg-accent/10 border border-accent/30 rounded-md"> {/* Increased margin-top, added background/border */}
-             <FileCode className="h-5 w-5 text-accent shrink-0" /> {/* Slightly larger icon */}
-             <a
-                href={documentationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:underline transition-colors font-medium" /* Use accent color directly */
-              >
-               Curious how this page works? Peek at the API docs!
-             </a>
-           </div>
         </div>
 
         <div>
@@ -62,7 +51,6 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
               <MapPin className="h-5 w-5 text-accent mt-1 shrink-0" />
               <span>{info.address}</span>
             </div>
-             {/* Documentation Link removed from here */}
             {/* Social Links Buttons */}
             <div className="flex items-center space-x-4 pt-2">
                <Button variant="outline" size="sm" asChild>
@@ -76,9 +64,22 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
                  </Link>
                </Button>
             </div>
+             {/* Documentation Link - Moved here */}
+             <div className="flex items-center space-x-2 text-base mt-4 p-3 bg-accent/10 border border-accent/30 rounded-md"> {/* Increased margin-top, added background/border */}
+               <FileCode className="h-5 w-5 text-accent shrink-0" /> {/* Slightly larger icon */}
+               <a
+                  href={documentationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline transition-colors font-medium" /* Use accent color directly */
+                >
+                 Curious how this page works? Peek at the API docs!
+               </a>
+             </div>
           </div>
         </div>
       </CardContent>
     </Card>
   );
 }
+
