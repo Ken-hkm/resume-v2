@@ -93,6 +93,15 @@ export default function Home() {
 
         <Separator className="my-12" />
 
+        {/* Portfolio */}
+        <div className="mb-12">
+            <Suspense fallback={<PortfolioSkeleton />}>
+                 <PortfolioLoader />
+            </Suspense>
+        </div>
+
+        <Separator className="my-12" />
+
         {/* Experience */}
         <div className='mb-12'>
            <Suspense fallback={<ExperienceSkeleton />}>
@@ -118,15 +127,6 @@ export default function Home() {
             </Suspense>
          </div>
 
-        <Separator className="my-12" />
-
-        {/* Portfolio */}
-        <div className="mb-12">
-            <Suspense fallback={<PortfolioSkeleton />}>
-                 <PortfolioLoader />
-            </Suspense>
-        </div>
-
          {/* Removed separator */}
       </div>
 
@@ -135,3 +135,4 @@ export default function Home() {
     </div>
   );
 }
+
