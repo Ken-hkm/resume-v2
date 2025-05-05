@@ -90,12 +90,12 @@ export default function ChatSection() {
       {/* Toggle Button */}
       {!isOpen && (
         <Button
-          size="icon"
-          className="rounded-full w-14 h-14 bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg"
+          className="rounded-full px-4 py-2 h-auto bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg" // Removed size, w, h. Adjusted padding.
           onClick={() => setIsOpen(true)}
           aria-label="Open chat"
         >
-          <MessageSquare className="h-6 w-6" />
+          <MessageSquare className="h-5 w-5 mr-2" /> {/* Added margin */}
+          Chat with me
         </Button>
       )}
 
@@ -132,7 +132,7 @@ export default function ChatSection() {
                     </Avatar>
                   )}
                   <div className={`rounded-lg p-3 max-w-[85%] text-sm ${message.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                    <p className="leading-relaxed">{message.text}</p>
+                    <p className="leading-relaxed whitespace-pre-wrap">{message.text}</p> {/* Added whitespace-pre-wrap */}
                   </div>
                   {message.sender === 'user' && (
                     <Avatar className="h-8 w-8">
