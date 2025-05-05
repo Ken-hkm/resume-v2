@@ -95,7 +95,7 @@ export default function ChatSection() {
           aria-label="Open chat"
         >
           <MessageSquare className="h-5 w-5 mr-2" /> {/* Added margin */}
-          Chat with me
+          Chat with AI Assistant
         </Button>
       )}
 
@@ -175,3 +175,4 @@ export default function ChatSection() {
     </div>
   );
 }
+
