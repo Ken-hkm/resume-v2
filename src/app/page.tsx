@@ -13,7 +13,7 @@ import PortfolioSection from '@/components/sections/portfolio-section'; // Impor
 import ChatSection from '@/components/sections/chat-section';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
+import { Terminal, FileCode } from "lucide-react"; // Import FileCode icon
 import PersonalInfoSkeleton from '@/components/sections/personal-info-skeleton';
 import ExperienceSkeleton from '@/components/sections/experience-skeleton';
 import ExpertiseSkeleton from '@/components/sections/expertise-skeleton'; // Import expertise skeleton
