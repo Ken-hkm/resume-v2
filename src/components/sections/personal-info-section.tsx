@@ -27,8 +27,14 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
         <div className="text-center sm:text-left flex-grow">
           <CardTitle className="text-3xl font-bold text-primary">{`${info.first_name} ${info.last_name}`}</CardTitle>
           <CardDescription className="text-lg text-muted-foreground mt-1">{info.title}</CardDescription>
-           {/* Moved Documentation Link Here - Made more noticeable */}
-           <div className="flex items-center justify-center sm:justify-start space-x-2 text-base mt-3"> {/* Increased size and margin-top */}
+        </div>
+      </CardHeader>
+      <CardContent className="p-6 space-y-6">
+        <div>
+          <h3 className="text-xl font-semibold mb-3 text-primary">About Me</h3>
+          <p className="text-foreground leading-relaxed">{info.aboutMe}</p>
+          {/* Documentation Link - Made more noticeable */}
+           <div className="flex items-center space-x-2 text-base mt-4 p-3 bg-accent/10 border border-accent/30 rounded-md"> {/* Increased margin-top, added background/border */}
              <FileCode className="h-5 w-5 text-accent shrink-0" /> {/* Slightly larger icon */}
              <a
                 href={documentationUrl}
@@ -39,12 +45,6 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
                Curious how this page works? Peek at the API docs!
              </a>
            </div>
-        </div>
-      </CardHeader>
-      <CardContent className="p-6 space-y-6">
-        <div>
-          <h3 className="text-xl font-semibold mb-3 text-primary">About Me</h3>
-          <p className="text-foreground leading-relaxed">{info.aboutMe}</p>
         </div>
 
         <div>
