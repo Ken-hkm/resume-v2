@@ -1,7 +1,6 @@
 
 import type { ExperienceEntry } from '@/services/experience';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Building, MapPin, Calendar } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
@@ -78,23 +77,20 @@ export default function ExperienceSection({ experiences }: ExperienceSectionProp
                 <span>{formatDateRange(exp.start_date, exp.end_date)}</span>
              </div>
 
+            {/* Display descriptions directly */}
             {exp.description && exp.description.length > 0 && (
-              <Accordion type="single" collapsible className="w-full mt-4">
+              <div className="mt-4 space-y-4">
                 {exp.description.map((desc, index) => (
-                  <AccordionItem value={`item-${index}`} key={index}>
-                    <AccordionTrigger className="text-base font-medium text-accent hover:no-underline">
-                        {desc.role}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="list-disc space-y-2 pl-6 text-foreground/90">
-                        {desc.details.map((detail, detailIndex) => (
-                          <li key={detailIndex}>{detail}</li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
+                  <div key={index}>
+                    <h4 className="text-base font-medium text-accent mb-2">{desc.role}</h4>
+                    <ul className="list-disc space-y-1 pl-6 text-foreground/90 text-sm">
+                      {desc.details.map((detail, detailIndex) => (
+                        <li key={detailIndex}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </Accordion>
+              </div>
             )}
           </div>
         ))}
