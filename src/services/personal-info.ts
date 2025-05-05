@@ -54,7 +54,7 @@ export async function getPersonalInfo(): Promise<PersonalInfo | null> {
     } catch (error) {
         // Log the specific error object for more details
         console.error("Failed to fetch personal info:", error);
-        // The 'TypeError: fetch failed' often indicates a network or DNS issue on the server environment.
+        // The 'TypeError: fetch failed' can indicate a network or DNS issue, or CORS problems if run client-side unexpectedly.
         return null;
     }
 }

@@ -16,6 +16,7 @@ import ExperienceSkeleton from '@/components/sections/experience-skeleton';
 async function PersonalInfoLoader() {
   const personalInfo = await getPersonalInfo();
   if (!personalInfo) {
+    // Specific error handling for personal info
     return (
       <Alert variant="destructive" className="mb-8">
         <Terminal className="h-4 w-4" />
@@ -32,23 +33,24 @@ async function PersonalInfoLoader() {
 // Async component to fetch and display experience
 async function ExperienceLoader() {
   const experiences = await getExperience();
-  // ExperienceSection already handles null/empty case with an Alert
+  // ExperienceSection internally handles null/empty/error states for experience data
   return <ExperienceSection experiences={experiences} />;
 }
 
 
 export default function Home() {
-  // Data fetching is now handled within the Suspense boundaries by the loader components
+  // Data fetching is handled independently within the Suspense boundaries
 
   return (
     <div className="container mx-auto max-w-3xl px-4 py-12">
+      {/* Suspense boundary for Personal Info */}
       <Suspense fallback={<PersonalInfoSkeleton />}>
         <PersonalInfoLoader />
       </Suspense>
 
       <Separator className="my-12" />
 
-      {/* Experience Section with Suspense */}
+      {/* Suspense boundary for Experience */}
       <div className='mb-12'>
          <Suspense fallback={<ExperienceSkeleton />}>
            <ExperienceLoader />
@@ -58,7 +60,6 @@ export default function Home() {
 
       {/* Placeholder Sections (no async data needed initially) */}
       <div className="space-y-12">
-        {/* Removed Experience placeholder */}
         <PlaceholderSection title="Education" />
         <PlaceholderSection title="Expertise" />
         <PlaceholderSection title="Technical Expertise" />
