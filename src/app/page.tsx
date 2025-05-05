@@ -67,43 +67,44 @@ async function EducationLoader() {
 export default function Home() {
 
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-12">
-      {/* Personal Info */}
-      <Suspense fallback={<PersonalInfoSkeleton />}>
-        <PersonalInfoLoader />
-      </Suspense>
+    <div className="relative min-h-screen"> {/* Added relative positioning */}
+      <div className="container mx-auto max-w-3xl px-4 py-12 pb-24"> {/* Added bottom padding */}
+        {/* Personal Info */}
+        <Suspense fallback={<PersonalInfoSkeleton />}>
+          <PersonalInfoLoader />
+        </Suspense>
 
-      <Separator className="my-12" />
+        <Separator className="my-12" />
 
-      {/* Experience */}
-      <div className='mb-12'>
-         <Suspense fallback={<ExperienceSkeleton />}>
-           <ExperienceLoader />
-         </Suspense>
+        {/* Experience */}
+        <div className='mb-12'>
+           <Suspense fallback={<ExperienceSkeleton />}>
+             <ExperienceLoader />
+           </Suspense>
+        </div>
+
+         <Separator className="my-12" />
+
+          {/* Education */}
+         <div className="mb-12">
+            <Suspense fallback={<EducationSkeleton />}>
+               <EducationLoader />
+            </Suspense>
+         </div>
+
+         <Separator className="my-12" />
+
+        {/* Expertise & Technical Expertise */}
+         <div className="mb-12">
+            <Suspense fallback={<ExpertiseSkeleton />}>
+               <ExpertiseLoader />
+            </Suspense>
+         </div>
+
+         {/* Removed separator */}
       </div>
 
-       <Separator className="my-12" />
-
-        {/* Education */}
-       <div className="mb-12">
-          <Suspense fallback={<EducationSkeleton />}>
-             <EducationLoader />
-          </Suspense>
-       </div>
-
-       <Separator className="my-12" />
-
-      {/* Expertise & Technical Expertise */}
-       <div className="mb-12">
-          <Suspense fallback={<ExpertiseSkeleton />}>
-             <ExpertiseLoader />
-          </Suspense>
-       </div>
-
-
-      <Separator className="my-12" />
-
-      {/* Chat Section */}
+      {/* Chat Section - Now fixed position */}
       <ChatSection />
     </div>
   );
