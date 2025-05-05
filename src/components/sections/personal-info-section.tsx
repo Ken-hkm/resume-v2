@@ -18,8 +18,8 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
     <Card className="mb-12 shadow-md rounded-lg overflow-hidden border border-border">
       <CardHeader className="bg-secondary p-6 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
         <Avatar className="h-24 w-24 text-3xl">
-          {/* Placeholder image - replace with actual if available */}
-          <AvatarImage src={`https://i.pravatar.cc/150?u=${info.id}`} alt={`${info.first_name} ${info.last_name}`} />
+          {/* Use the provided image URL */}
+          <AvatarImage src="https://raw.githubusercontent.com/Ken-hkm/resume/main/image/kenneth.jpeg" alt={`${info.first_name} ${info.last_name}`} />
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
         <div className="text-center sm:text-left">
