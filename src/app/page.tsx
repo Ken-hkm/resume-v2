@@ -3,18 +3,20 @@ import { Suspense } from 'react';
 import { getPersonalInfo, type PersonalInfo } from '@/services/personal-info';
 import { getExperience, type ExperienceEntry } from '@/services/experience';
 import { getExpertiseData, type ExpertiseData } from '@/services/expertise'; // Import expertise service
+import { getEducationData, type EducationEntry } from '@/services/education'; // Import education service
 import PersonalInfoSection from '@/components/sections/personal-info-section';
 import ExperienceSection from '@/components/sections/experience-section';
 import ExpertiseSection from '@/components/sections/expertise-section'; // Import expertise component
 import TechnicalExpertiseSection from '@/components/sections/technical-expertise-section'; // Import technical expertise component
+import EducationSection from '@/components/sections/education-section'; // Import education component
 import ChatSection from '@/components/sections/chat-section';
-import PlaceholderSection from '@/components/sections/placeholder-section';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
 import PersonalInfoSkeleton from '@/components/sections/personal-info-skeleton';
 import ExperienceSkeleton from '@/components/sections/experience-skeleton';
 import ExpertiseSkeleton from '@/components/sections/expertise-skeleton'; // Import expertise skeleton
+import EducationSkeleton from '@/components/sections/education-skeleton'; // Import education skeleton
 
 
 // Async component to fetch and display personal info
@@ -50,10 +52,15 @@ async function ExpertiseLoader() {
      <div className="space-y-12">
        <ExpertiseSection skills={expertiseData?.skills ?? []} />
        <TechnicalExpertiseSection technicalSkills={expertiseData?.technical_skills ?? []} />
-       {/* Keep Education Placeholder */}
-       <PlaceholderSection title="Education" />
      </div>
   );
+}
+
+// Async component to fetch and display education data
+async function EducationLoader() {
+    const educationEntries = await getEducationData();
+    // EducationSection internally handles null/empty/error states
+    return <EducationSection educationEntries={educationEntries} />;
 }
 
 
@@ -74,6 +81,15 @@ export default function Home() {
            <ExperienceLoader />
          </Suspense>
       </div>
+
+       <Separator className="my-12" />
+
+        {/* Education */}
+       <div className="mb-12">
+          <Suspense fallback={<EducationSkeleton />}>
+             <EducationLoader />
+          </Suspense>
+       </div>
 
        <Separator className="my-12" />
 
