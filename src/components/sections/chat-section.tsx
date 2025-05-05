@@ -8,20 +8,29 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { sendChatQuery } from '@/services/chat';
-import { SendHorizonal, Bot, User, MessageSquare, X } from 'lucide-react';
+import { SendHorizonal, Bot, User, MessageSquare, X, Info } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from '@/lib/utils';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
 
 interface Message {
   sender: 'user' | 'bot';
   text: string;
 }
 
+// Initial message from the bot explaining the tech and disclaimer
+const initialBotMessage: Message = {
+    sender: 'bot',
+    text: "Hi! I'm an AI assistant trained on Kenneth's resume data. I use Gemini LLM, Gemini Text Embedding, and Pinecone Vector DB. Please note that my responses are AI-generated and might occasionally be inaccurate. Ask me anything about Kenneth's profile!"
+};
+
+
 export default function ChatSection() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([initialBotMessage]); // Start with the initial message
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // State for chat visibility
+  const [isOpen, setIsOpen] = useState(true); // Default to open
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -114,6 +123,7 @@ export default function ChatSection() {
         <CardContent className="p-0">
           <ScrollArea className="h-[400px] p-4" ref={scrollAreaRef}>
             <div className="space-y-4">
+              {/* Display Messages */}
               {messages.map((message, index) => (
                 <div key={index} className={`flex items-start gap-3 ${message.sender === 'user' ? 'justify-end' : ''}`}>
                   {message.sender === 'bot' && (
@@ -121,8 +131,8 @@ export default function ChatSection() {
                       <AvatarFallback><Bot size={18} /></AvatarFallback>
                     </Avatar>
                   )}
-                  <div className={`rounded-lg p-3 max-w-[75%] ${message.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
-                    <p className="text-sm leading-relaxed">{message.text}</p>
+                  <div className={`rounded-lg p-3 max-w-[85%] text-sm ${message.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}`}>
+                    <p className="leading-relaxed">{message.text}</p>
                   </div>
                   {message.sender === 'user' && (
                     <Avatar className="h-8 w-8">
@@ -131,6 +141,7 @@ export default function ChatSection() {
                   )}
                 </div>
               ))}
+              {/* Loading Indicator */}
               {isLoading && (
                 <div className="flex items-start gap-3">
                   <Avatar className="h-8 w-8">
