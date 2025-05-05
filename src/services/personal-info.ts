@@ -25,8 +25,9 @@ export async function getPersonalInfo(): Promise<PersonalInfo | null> {
     const apiKey = 'wRNbm38KGBO79fj'; // Updated API Key
 
     if (!apiUrl || !apiKey) {
+        // This check is technically redundant with hardcoded values but kept for safety.
         console.error("API URL or API Key for personal info is not configured (this should not happen with hardcoded values).");
-        return null; // Should not happen with hardcoded values
+        return null;
     }
 
     try {
@@ -51,7 +52,9 @@ export async function getPersonalInfo(): Promise<PersonalInfo | null> {
         const data: PersonalInfo = await response.json();
         return data;
     } catch (error) {
+        // Log the specific error object for more details
         console.error("Failed to fetch personal info:", error);
-        return null; // Or throw error
+        // The 'TypeError: fetch failed' often indicates a network or DNS issue on the server environment.
+        return null;
     }
 }
