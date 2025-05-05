@@ -23,9 +23,16 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
           <AvatarImage src="https://raw.githubusercontent.com/Ken-hkm/resume/main/image/kenneth.jpeg" alt={`${info.first_name} ${info.last_name}`} />
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
-        <div className="text-center sm:text-left">
+        <div className="text-center sm:text-left flex-grow">
           <CardTitle className="text-3xl font-bold text-primary">{`${info.first_name} ${info.last_name}`}</CardTitle>
           <CardDescription className="text-lg text-muted-foreground mt-1">{info.title}</CardDescription>
+           {/* Moved Documentation Link Here */}
+           <div className="flex items-center justify-center sm:justify-start space-x-2 text-sm text-foreground mt-2">
+             <FileCode className="h-4 w-4 text-accent shrink-0" />
+             <a href={documentationUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-accent transition-colors font-medium">
+               Curious how this page works? Peek at the API docs!
+             </a>
+           </div>
         </div>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
@@ -49,13 +56,7 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
               <MapPin className="h-5 w-5 text-accent mt-1 shrink-0" />
               <span>{info.address}</span>
             </div>
-             {/* Added Documentation Link */}
-             <div className="flex items-center space-x-3 text-foreground">
-              <FileCode className="h-5 w-5 text-accent" />
-              <a href={documentationUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-accent transition-colors">
-                Curious how this page works? Peek at the API docs!
-              </a>
-            </div>
+             {/* Documentation Link removed from here */}
             {/* Social Links Buttons */}
             <div className="flex items-center space-x-4 pt-2">
                <Button variant="outline" size="sm" asChild>
