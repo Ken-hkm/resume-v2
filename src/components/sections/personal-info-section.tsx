@@ -6,7 +6,7 @@ import type { PersonalInfo } from '@/services/personal-info';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Linkedin, Github, FileCode } from 'lucide-react'; // Added FileCode icon
+import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react'; // Removed FileCode icon
 import Link from 'next/link';
 
 interface PersonalInfoSectionProps {
@@ -15,7 +15,7 @@ interface PersonalInfoSectionProps {
 
 export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) {
   const initials = `${info.first_name?.[0] ?? ''}${info.last_name?.[0] ?? ''}`.toUpperCase();
-  const documentationUrl = 'https://4rqni77r30.apidog.io/'; // Added documentation URL
+  // Removed documentationUrl
 
   return (
     <Card className="mb-12 shadow-md rounded-lg overflow-hidden border border-border">
@@ -64,22 +64,10 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
                  </Link>
                </Button>
             </div>
-             {/* Documentation Link - Moved here */}
-             <div className="flex items-center space-x-2 text-base mt-4 p-3 bg-accent/10 border border-accent/30 rounded-md"> {/* Increased margin-top, added background/border */}
-               <FileCode className="h-5 w-5 text-accent shrink-0" /> {/* Slightly larger icon */}
-               <a
-                  href={documentationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:underline transition-colors font-medium" /* Use accent color directly */
-                >
-                 Curious how this page works? Peek at the API docs!
-               </a>
-             </div>
+             {/* Removed Documentation Link */}
           </div>
         </div>
       </CardContent>
     </Card>
   );
 }
-

@@ -9,6 +9,7 @@ import ExperienceSection from '@/components/sections/experience-section';
 import ExpertiseSection from '@/components/sections/expertise-section'; // Import expertise component
 import TechnicalExpertiseSection from '@/components/sections/technical-expertise-section'; // Import technical expertise component
 import EducationSection from '@/components/sections/education-section'; // Import education component
+import PortfolioSection from '@/components/sections/portfolio-section'; // Import portfolio component
 import ChatSection from '@/components/sections/chat-section';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -17,6 +18,7 @@ import PersonalInfoSkeleton from '@/components/sections/personal-info-skeleton';
 import ExperienceSkeleton from '@/components/sections/experience-skeleton';
 import ExpertiseSkeleton from '@/components/sections/expertise-skeleton'; // Import expertise skeleton
 import EducationSkeleton from '@/components/sections/education-skeleton'; // Import education skeleton
+import PortfolioSkeleton from '@/components/sections/portfolio-skeleton'; // Import portfolio skeleton
 
 
 // Async component to fetch and display personal info
@@ -63,6 +65,21 @@ async function EducationLoader() {
     return <EducationSection educationEntries={educationEntries} />;
 }
 
+// Component to display portfolio section (currently hardcoded link)
+function PortfolioLoader() {
+    // For now, the link is hardcoded. If fetched later, make this async.
+    const portfolioItems = [
+        {
+            id: 'api-docs',
+            title: 'Resume API Documentation',
+            description: 'Curious how this page works? Peek at the API docs!',
+            url: 'https://4rqni77r30.apidog.io/',
+            icon: FileCode, // Using FileCode icon
+        }
+    ];
+    return <PortfolioSection items={portfolioItems} />;
+}
+
 
 export default function Home() {
 
@@ -100,6 +117,15 @@ export default function Home() {
                <ExpertiseLoader />
             </Suspense>
          </div>
+
+        <Separator className="my-12" />
+
+        {/* Portfolio */}
+        <div className="mb-12">
+            <Suspense fallback={<PortfolioSkeleton />}>
+                 <PortfolioLoader />
+            </Suspense>
+        </div>
 
          {/* Removed separator */}
       </div>
