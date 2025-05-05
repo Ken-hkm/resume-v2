@@ -22,7 +22,7 @@ export interface PersonalInfo {
 export async function getPersonalInfo(): Promise<PersonalInfo | null> {
     // Hardcoded API URL and Key
     const apiUrl = 'https://biv4qj1w8b.execute-api.ap-southeast-3.amazonaws.com/dev/api/v1/profile';
-    const apiKey = 'a7LgXq80iFf4kF0u';
+    const apiKey = 'wRNbm38KGBO79fj'; // Updated API Key
 
     if (!apiUrl || !apiKey) {
         console.error("API URL or API Key for personal info is not configured (this should not happen with hardcoded values).");
