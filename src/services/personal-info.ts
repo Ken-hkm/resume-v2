@@ -20,12 +20,13 @@ export interface PersonalInfo {
  * @returns A promise that resolves to a PersonalInfo object or null if an error occurs.
  */
 export async function getPersonalInfo(): Promise<PersonalInfo | null> {
-    const apiUrl = process.env.PERSONAL_INFO_API_URL;
-    const apiKey = process.env.PERSONAL_INFO_API_KEY;
+    // Hardcoded API URL and Key
+    const apiUrl = 'https://biv4qj1w8b.execute-api.ap-southeast-3.amazonaws.com/dev/api/v1/profile';
+    const apiKey = 'a7LgXq80iFf4kF0u';
 
     if (!apiUrl || !apiKey) {
-        console.error("API URL or API Key for personal info is not configured.");
-        return null; // Or throw an error, depending on desired behavior
+        console.error("API URL or API Key for personal info is not configured (this should not happen with hardcoded values).");
+        return null; // Should not happen with hardcoded values
     }
 
     try {

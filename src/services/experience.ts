@@ -34,11 +34,13 @@ const ExperienceApiResponseSchema = z.object({
  * @returns A promise that resolves to an array of ExperienceEntry objects or null if an error occurs.
  */
 export async function getExperience(): Promise<ExperienceEntry[] | null> {
-    const apiUrl = process.env.EXPERIENCE_API_URL;
-    const apiKey = process.env.EXPERIENCE_API_KEY;
+    // Hardcoded API URL and Key
+    const apiUrl = 'https://3f0tv6ipo2.execute-api.ap-southeast-3.amazonaws.com/dev/api/v1/experience';
+    const apiKey = 'wRNbm38KGBO79fj';
 
     if (!apiUrl || !apiKey) {
-        console.error("API URL or API Key for experience is not configured.");
+        // This check is technically redundant with hardcoded values but kept for safety.
+        console.error("API URL or API Key for experience is not configured (this should not happen with hardcoded values).");
         return null;
     }
 

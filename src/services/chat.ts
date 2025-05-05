@@ -13,11 +13,11 @@ export interface ChatResponse {
  * @returns A promise that resolves to a ChatResponse object or null if an error occurs.
  */
 export async function sendChatQuery(query: string): Promise<ChatResponse | null> {
-     // Use NEXT_PUBLIC_ prefix for client-side access
-    const apiUrl = process.env.NEXT_PUBLIC_CHAT_API_URL;
+     // Hardcoded API URL
+    const apiUrl = 'https://us-central1-portfolio-agent-428002.cloudfunctions.net/get_resume_info';
 
     if (!apiUrl) {
-        console.error("Chat API URL is not configured.");
+        console.error("Chat API URL is not configured (this should not happen with hardcoded values).");
         // Handle this appropriately in the UI, maybe show a message to the user
         return null;
     }
