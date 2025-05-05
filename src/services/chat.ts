@@ -32,9 +32,14 @@ export async function sendChatQuery(query: string): Promise<ChatResponse | null>
         });
 
         if (!response.ok) {
-            console.error(`Error sending chat query: ${response.status} ${response.statusText}`);
-            const errorBody = await response.text();
-            console.error("Error body:", errorBody);
+            // Log specific HTTP error status and text
+            console.error(`Error sending chat query: HTTP ${response.status} ${response.statusText}`);
+            try {
+                const errorBody = await response.text();
+                console.error("Error response body:", errorBody);
+            } catch (e) {
+                console.error("Could not read error response body.");
+            }
              // Handle error in UI
             return null;
         }
@@ -42,7 +47,10 @@ export async function sendChatQuery(query: string): Promise<ChatResponse | null>
         const data: ChatResponse = await response.json();
         return data;
     } catch (error) {
+        // Log the specific error object for more details
         console.error("Failed to send chat query:", error);
+        // A 'TypeError: Failed to fetch' often indicates a network issue (e.g., DNS, offline) or a CORS problem.
+        // Ensure the API endpoint (apiUrl) has correct CORS headers configured if this runs in a browser context.
          // Handle error in UI
         return null;
     }
