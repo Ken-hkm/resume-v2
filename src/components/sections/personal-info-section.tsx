@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { PersonalInfo } from '@/services/personal-info';
@@ -26,10 +27,15 @@ export default function PersonalInfoSection({ info }: PersonalInfoSectionProps) 
         <div className="text-center sm:text-left flex-grow">
           <CardTitle className="text-3xl font-bold text-primary">{`${info.first_name} ${info.last_name}`}</CardTitle>
           <CardDescription className="text-lg text-muted-foreground mt-1">{info.title}</CardDescription>
-           {/* Moved Documentation Link Here */}
-           <div className="flex items-center justify-center sm:justify-start space-x-2 text-sm text-foreground mt-2">
-             <FileCode className="h-4 w-4 text-accent shrink-0" />
-             <a href={documentationUrl} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-accent transition-colors font-medium">
+           {/* Moved Documentation Link Here - Made more noticeable */}
+           <div className="flex items-center justify-center sm:justify-start space-x-2 text-base mt-3"> {/* Increased size and margin-top */}
+             <FileCode className="h-5 w-5 text-accent shrink-0" /> {/* Slightly larger icon */}
+             <a
+                href={documentationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline transition-colors font-medium" /* Use accent color directly */
+              >
                Curious how this page works? Peek at the API docs!
              </a>
            </div>
